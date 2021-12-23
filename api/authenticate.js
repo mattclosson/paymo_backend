@@ -18,13 +18,6 @@ exports.getToken = user => {
   })
 }
 
-exports.getRefreshToken = user => {
-  const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {
-    expiresIn: eval(process.env.REFRESH_TOKEN_EXPIRY),
-  })
-  return refreshToken
-}
-
 exports.verifyToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
 

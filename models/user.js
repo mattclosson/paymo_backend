@@ -2,14 +2,6 @@ const mongoose = require("./connection");
 const { Schema, model } = mongoose;
 const bcrypt = require('bcryptjs');
 
-
-// const Session = new Schema({
-//   refreshToken: {
-//     type: String,
-//     default: "",
-//   },
-// })
-
 const UserSchema = new Schema({
   type: {
     type: String,

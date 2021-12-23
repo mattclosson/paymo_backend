@@ -103,28 +103,4 @@ router.put("/update", verifyToken, async (req, res) => {
     }
 })
 
-// router.get("/logout", verifyUser, (req, res, next) => {
-//     const { signedCookies = {} } = req
-//     User.findById(req.user._id).then(
-//       user => {
-//         const tokenIndex = user.refreshToken.findIndex(
-//           item => item.refreshToken === refreshToken
-//         )
-  
-//         if (tokenIndex !== -1) {
-//           user.refreshToken.id(user.refreshToken[tokenIndex]._id).remove()
-//         }
-  
-//         user.save((err, user) => {
-//           if (err) {
-//             res.statusCode = 500
-//             res.send(err)
-//           } else {
-//             res.send({ success: true })
-//           }
-//         })
-//       },
-//       err => next(err)
-//     )
-//   })
 module.exports = router

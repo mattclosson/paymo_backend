@@ -39,12 +39,6 @@ router.get("/stripeaccount", async (req, res) => {
     const account = await stripe.accounts.retrieve(
         "acct_1K9bDjQK6IQKcjBK"
     );
-    // const customer = await stripe.customers.create({
-    //   email: 'larrynewemail@example.com',
-    //   name: "Larry"
-    // }, {
-    //     stripeAccount: "acct_1K9bDjQK6IQKcjBK"
-    // });
 
     const invoiceItem = await stripe.invoiceItems.create({
         customer: 'cus_KpGAkXce8CeUMA',
@@ -55,7 +49,6 @@ router.get("/stripeaccount", async (req, res) => {
         stripeAccount: "acct_1K9bDjQK6IQKcjBK"
     });
 
-    // console.log(customer)
     const invoice = await stripe.invoices.create({
         customer: "cus_KpGAkXce8CeUMA",
         collection_method: "send_invoice",
@@ -63,16 +56,7 @@ router.get("/stripeaccount", async (req, res) => {
     }, {
         stripeAccount: "acct_1K9bDjQK6IQKcjBK"
     });
-    // const invoice = await stripe.invoices.retrieve(
-    //     'in_1K9bduQK6IQKcjBKOBLetAjR'
-    // );
 
-    // console.log(invoice.id)
-    // const finalInvoice = await stripe.invoices.finalizeInvoice(
-    //     invoice.id
-    // );
-
-    // console.log(finalInvoice)
     res.json(invoice)
 })
 
@@ -171,7 +155,6 @@ router.get("/stripe/open", verifyToken, async (req, res) => {
 })
 
 router.get("/users", verifyToken, async (req, res) => {
-    // const userId = req.params.id
     const {user_id} = req.user
     const id = user_id
     let allInvoices = await User.findById(id).populate("invoices")
@@ -195,7 +178,6 @@ router.delete("/:id", async (req, res) => {
     const invoice = await Invoice.findById(id)
     console.log(invoice)
     const deletedInvoice = await Invoice.findByIdAndRemove(id)
-    // const deletedFromUser = await User.findByIdAndRemove(user)
     res.json(deletedInvoice)
 })
 
