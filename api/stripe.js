@@ -1,6 +1,6 @@
 require("dotenv").config(); // Load ENV Variables
 const stripe = require('stripe')(process.env.secretKey);
-const request = require('request-promise-native');
+const request = require('request');
 const querystring = require('querystring');
 const express = require('express');
 const router = express.Router();
@@ -51,6 +51,7 @@ router.post('/token', async (req, res) => {
       if(user.stripeAccountId) {
           res.status(401).json({"error": "Stripe account already made"})
       }
+    //   user.stripeAccountId = expressAuthorized.stripe_user_id;
 
       await user.save();
 
