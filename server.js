@@ -16,7 +16,7 @@ const StripeApiRouter = require("./api/stripe");
 const InvoiceApiRouter = require("./api/invoice")
 
 
-const DATABASE_URL = process.env.DATABASE_URL;
+const DATABASE_URL = process.env.DATABASE_URL || 4000;
 const CONFIG = {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -51,11 +51,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.locals.moment = moment;
-
-const whitelist = process.env.WHITELISTED_DOMAINS
-  ? process.env.WHITELISTED_DOMAINS.split(",")
-  : []
-
 
 app.get("/", (req, res) => {
   res.render("home")
